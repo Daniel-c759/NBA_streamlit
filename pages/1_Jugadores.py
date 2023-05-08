@@ -59,6 +59,7 @@ select a.TEAM_CITY as Equipo,
     a.AST,
     a.STL,
     a.BLK,
+    a.PLUS_MINUS as mas_menos,
     b.SEASON as Temporada
 from cte as a
 left join NBA.games as b
@@ -67,7 +68,7 @@ where a.PLAYER_NAME="{player1}"
 """
 
 resumen_tabla=players.resumen_player(resumen_query,NBA)
-st.write(resumen_tabla)
+st.write(resumen_tabla.style.highlight_max().format("{:.2f}"))
 
 st.markdown("---")
 

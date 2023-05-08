@@ -7,12 +7,12 @@ def resumen_player(query, conexion):
     tabla["segundos"]=tabla["segundos"].astype("float")
     tabla["segundos"]=tabla["segundos"]/60
     tabla["minutos"]=tabla["min"]+tabla["segundos"]
-    variables=["minutos","FG_PCT","FG3_PCT","FT_PCT","PTS","REB","AST","STL","BLK"]
+    variables=["minutos","FG_PCT","FG3_PCT","FT_PCT","PTS","REB","AST","STL","BLK","mas_menos"]
     #devolver información resumida
-    resumen=round(tabla.groupby(["Temporada","Equipo","Jugador"])[variables].mean(),2)
+    resumen=tabla.groupby(["Temporada","Equipo","Jugador"])[variables].mean()
     resumen.sort_index(ascending=False,inplace=True)
     #Regresar tabla
-    return resumen
+    return round(resumen,2)
 
 def compara_player(p1,p2,conexion):
     resumen_queryp1=f"""
@@ -43,6 +43,7 @@ def compara_player(p1,p2,conexion):
         a.AST,
         a.STL,
         a.BLK,
+        a.PLUS_MINUS as mas_menos,
         b.SEASON as Temporada
     from cte as a
     left join NBA.games as b
@@ -79,6 +80,7 @@ def compara_player(p1,p2,conexion):
         a.AST,
         a.STL,
         a.BLK,
+        a.PLUS_MINUS as mas_menos,
         b.SEASON as Temporada
     from cte as a
     left join NBA.games as b
@@ -96,6 +98,6 @@ def compara_player(p1,p2,conexion):
     ag2=tabla_p2.groupby("Jugador").mean()
 
     total=pd.concat([ag1,ag2],axis=0)
-    return total
+    return total.style.highlight_max().format("{:.2f}")
 
 
