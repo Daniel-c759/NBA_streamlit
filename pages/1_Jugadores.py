@@ -31,41 +31,8 @@ player1=st.selectbox(
     key="p1"
 )
 
-resumen_query=f"""
-with cte as (
-select GAME_ID,
-    TEAM_ID,
-    TEAM_CITY,
-    PLAYER_NAME,
-    MIN,
-    FG_PCT,
-    FG3_PCT,
-    FT_PCT,
-    PTS,
-    REB,
-    AST,
-    STL,
-    BLK,
-    PLUS_MINUS
-from NBA.games_details)
-select a.TEAM_CITY as Equipo,
-    a.PLAYER_NAME as Jugador,
-    a.MIN as minutos,
-    a.FG_PCT,
-    a.FG3_PCT,
-    a.FT_PCT,
-    a.PTS,
-    a.REB,
-    a.AST,
-    a.STL,
-    a.BLK,
-    a.PLUS_MINUS as mas_menos,
-    b.SEASON as Temporada
-from cte as a
-left join NBA.games as b
-on a.GAME_ID=b.GAME_ID
-where a.PLAYER_NAME="{player1}"
-"""
+resumen_query=players.query(player1)
+
 
 resumen_tabla=players.resumen_player(resumen_query,NBA)
 st.write(resumen_tabla.style.highlight_max().format("{:.2f}"))

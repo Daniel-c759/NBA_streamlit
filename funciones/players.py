@@ -14,8 +14,8 @@ def resumen_player(query, conexion):
     #Regresar tabla
     return round(resumen,2)
 
-def compara_player(p1,p2,conexion):
-    resumen_queryp1=f"""
+def query(player):
+    q=f"""
     with cte as (
     select GAME_ID,
         TEAM_ID,
@@ -48,45 +48,15 @@ def compara_player(p1,p2,conexion):
     from cte as a
     left join NBA.games as b
     on a.GAME_ID=b.GAME_ID
-    where a.PLAYER_NAME="{p1}"
+    where a.PLAYER_NAME="{player}"
     """
+    return q
+
+def compara_player(p1,p2,conexion):
+    resumen_queryp1=query(p1)
     tabla_p1=resumen_player(resumen_queryp1,conexion)
 
-    resumen_queryp2=f"""
-    with cte as (
-    select GAME_ID,
-        TEAM_ID,
-        TEAM_CITY,
-        PLAYER_NAME,
-        MIN,
-        FG_PCT,
-        FG3_PCT,
-        FT_PCT,
-        PTS,
-        REB,
-        AST,
-        STL,
-        BLK,
-        PLUS_MINUS
-    from NBA.games_details)
-    select a.TEAM_CITY as Equipo,
-        a.PLAYER_NAME as Jugador,
-        a.MIN as minutos,
-        a.FG_PCT,
-        a.FG3_PCT,
-        a.FT_PCT,
-        a.PTS,
-        a.REB,
-        a.AST,
-        a.STL,
-        a.BLK,
-        a.PLUS_MINUS as mas_menos,
-        b.SEASON as Temporada
-    from cte as a
-    left join NBA.games as b
-    on a.GAME_ID=b.GAME_ID
-    where a.PLAYER_NAME="{p2}"
-    """
+    resumen_queryp2=query(p2)
     tabla_p2=resumen_player(resumen_queryp2,conexion)
     #Resetear index y tomar columnas pertinentes
     tabla_p1.reset_index(inplace=True)
