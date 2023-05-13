@@ -2,6 +2,13 @@ import mysql.connector as connection
 import pandas as pd
 import streamlit as st
 import funciones.players as players
+import os
+
+host=os.environ.get("host")
+usuario=os.environ.get("user")
+contraseña=os.environ.get("passwd")
+base_datos=os.environ.get("db")
+
 
 NBA=connection.connect(
     host="localhost",
