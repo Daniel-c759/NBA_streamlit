@@ -2,3 +2,6 @@ mysql-connector-python==8.0.33
 python-dotenv==1.0.0
 pandas==1.4.1
 streamlit==1.22.0
+SQLAlchemy==2.0.15
+mysqlclient==2.1.1
+pymysql==1.0.3

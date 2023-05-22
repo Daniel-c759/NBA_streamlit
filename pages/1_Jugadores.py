@@ -1,21 +1,23 @@
-import mysql.connector as connection
 import pandas as pd
 import streamlit as st
+import pymysql
+pymysql.install_as_MySQLdb()
 import funciones.players as players
-import os
 
-host=os.environ.get("host")
-usuario=os.environ.get("user")
-contraseña=os.environ.get("passwd")
-base_datos=os.environ.get("db")
+# host=os.environ.get("host")
+# usuario=os.environ.get("user")
+# contraseña=os.environ.get("passwd")
+# base_datos=os.environ.get("db")
 
 
-NBA=connection.connect(
-    host="localhost",
-    user="root",
-    passwd="daniel97",
-    db="NBA"
-)
+# NBA=connection.connect(
+#     host="localhost",
+#     user="root",
+#     passwd="daniel97",
+#     db="NBA"
+# )
+NBA=st.experimental_connection("mysql",type="sql")
+
 
 st.header(":runner: Jugadores")
 
@@ -30,7 +32,7 @@ from NBA.games_details
 order by jugador desc
 """
 
-jugadores_tabla=pd.read_sql_query(jugadores_query,NBA)
+jugadores_tabla=NBA.query(jugadores_query)
 
 player1=st.selectbox(
     "Seleccione un jugador",

@@ -1,7 +1,7 @@
 import pandas as pd
 
 def resumen_player(query, conexion):
-    tabla=pd.read_sql_query(query,conexion)
+    tabla=conexion.query(query)
     tabla[["min","segundos"]]=tabla.minutos.str.split(":",expand=True)
     tabla["min"]=tabla["min"].astype("float")
     tabla["segundos"]=tabla["segundos"].astype("float")

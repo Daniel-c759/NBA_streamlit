@@ -2,3 +2,5 @@
 */.ipynb_checkpoints/*
 *.env
 *ipynb
+*.toml
+*.streamlit/

@@ -1,19 +1,23 @@
-import mysql.connector as connection
+# import mysql.connector as connection
 import pandas as pd
 import streamlit as st
-import os
+import pymysql
+pymysql.install_as_MySQLdb()
+# import os
 
-host=os.environ.get("host")
-usuario=os.environ.get("user")
-contraseña=os.environ.get("passwd")
-base_datos=os.environ.get("db")
+# host=os.environ.get("host")
+# usuario=os.environ.get("user")
+# contraseña=os.environ.get("passwd")
+# base_datos=os.environ.get("db")
 
-NBA=connection.connect(
-    host="localhost",
-    user="root",
-    passwd="daniel97",
-    db="NBA"
-)
+# NBA=connection.connect(
+#     host="localhost",
+#     user="root",
+#     passwd="daniel97",
+#     db="NBA"
+# )
+
+NBA=st.experimental_connection("mysql",type="sql")
 
 temporadas_query="""
 select SEASON as temporada
@@ -22,7 +26,8 @@ group by temporada
 order by temporada desc
 """
 
-temporadas_tabla=pd.read_sql_query(temporadas_query,NBA)
+temporadas_tabla=NBA.query(temporadas_query)
+# pd.read_sql_query(temporadas_query,NBA)
 
 season=st.selectbox(
     "Seleccione una temporada",
@@ -46,7 +51,7 @@ where b.SEASON={int(season)}
 group by equipo
 """
 
-equipos_tabla=pd.read_sql_query(equipos_query,NBA)
+equipos_tabla=NBA.query(equipos_query)
 team=st.selectbox(
     "Seleccione un equipo",
     list(equipos_tabla.equipo)
@@ -80,5 +85,5 @@ where b.SEASON={int(season)} and
 a.TEAM_CITY="{team}"
 """
 
-resumen_tabla=pd.read_sql_query(resumen_query,NBA)
+resumen_tabla=NBA.query(resumen_query)
 st.write(round(resumen_tabla.groupby(["Equipo","Jugador"]).mean(),2))
