@@ -1,0 +1,26 @@
+version: '2.18.1'
+
+services:
+  app:
+    tty: true
+    build: 
+      context: ./app/
+    ports:
+      - '8501:8501'
+    depends_on:
+      - db
+    links:
+      - db
+    command: bash -c "sleep 60 && python3 -m streamlit run Inicio.py"
+
+
+  db:
+    build: 
+      context: ./bd/
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'NBA'
+      MYSQL_ROOT_PASSWORD: 'daniel97' 
+    ports:
+      - '3308:3306'
+
