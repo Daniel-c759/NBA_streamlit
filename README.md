@@ -6,7 +6,28 @@ Para el despliegue de la herramienta desarrollada en streamlit, se necesita tene
 
 ## Despliegue
 ### Clonar el repositorio
+Para ejecutar los comandos necesarios para tener el repositorio en local, se puede usar git-bash o si se posee un sistema basado en unix (MacOS y Linux) se pueden ejecutar los comandos desde la terminal.
 
+Para clonar el repositorio se puede hacer uso de los comandos:
 
+`git clone https://github.com/Daniel-c759/NBA_streamlit.git`
 
+o si bien se tienen configuradas llaves SSH se puede usar:
 
+`git clone git@github.com:Daniel-c759/NBA_streamlit.git`
+
+### Iniciar los contenedores Docker
+Desde la interfaz de linea de comandos (CLI por sus siglas en inglés) de Docker, nos dirigimos a la carpeta NBA_streamlit mediante el uso del comando `cd`. Una vez dentro de la carpta podemos listar los archivos con el comando `ls`, con el cual encontraremos el archivo docker-compose.yml. Para hacer uso de este archivo, en la carpeta procedemos a realizar el siguiente comando:
+
+`docker compose up`
+
+Si por alguna razón se necesitan permisos de administrador, en los sistemas basados en unix se puede hacer uso del comando `sudo` de la siguiente manera:
+
+`sudo docker compose up`
+
+### Abrir url correspondiente
+Una vez iniciados los contenedores, se nos presentara el siguiente mensaje en consola:
+
+> You can now view your Streamlit app in your browser.
+> Network URL: url1
+> External URL: url2
