@@ -16,6 +16,22 @@ o si bien se tienen configuradas llaves SSH se puede usar:
 
 `git clone git@github.com:Daniel-c759/NBA_streamlit.git`
 
+### Configurar
+
+Dentro de la carpeta NBA_streamlit, es necesario crear una carpeta **.streamlit/**. Dentro de esta carpeta es necesario crear un archivo **secrets.toml** con la siguiente configuración:
+
+```
+# .streamlit/secrets.toml
+
+[connections.mysql]
+dialect = "mysql"
+host = "db"
+port = 3306
+database = "NBA"
+username = "root"
+password = "daniel97"
+```
+
 ### Iniciar los contenedores Docker
 Desde la interfaz de linea de comandos (CLI por sus siglas en inglés) de Docker, nos dirigimos a la carpeta NBA_streamlit mediante el uso del comando `cd`. Una vez dentro de la carpta podemos listar los archivos con el comando `ls`, con el cual encontraremos el archivo docker-compose.yml. Para hacer uso de este archivo, en la carpeta procedemos a realizar el siguiente comando:
 
