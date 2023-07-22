@@ -47,3 +47,44 @@ Una vez iniciados los contenedores, se nos presentara el siguiente mensaje en co
 > You can now view your Streamlit app in your browser.
 > Network URL: url1
 > External URL: url2
+
+## Visualización
+
+![Imagen de la pantalla inicial](imagenes/inicio_nba.png)
+
+Lo primero que encontraremos es la pantalla de inicio de la herramienta, en está se observa que en el panel de la izquierda están las opciones disponibles, mientras en la parte central de la página se ve una breve descripción de lo que se puede encontrar en la herramienta.
+
+### Página de jugadores
+
+En está página encontramos una tabla en la que se resume por temporada estadísticas de un jugador que el usuario puede seleccionar entre aquellos que han estado en alguna temporada en la NBA desde el 2003. En la tabla, las estadísticas que se presentan son:
+
+* Minutos por temporada
+* Porcentaje de campo por temporada (FG_PCT)
+* Porcentaje de triples por temporada (FG3_PCT)
+* Porcentaje de tiros libres por temporada (FT_PCT)
+* Puntos (PTS)
+* Rebotos (REB)
+* Robos (STL)
+* Asistencias (AST)
+* Bloqueos (BLK)
+* Diferencia en puntos obtenida cuando el jugador está en cancha (mas_menos)
+
+![Imagen uno de la página de jugadores](imagenes/jugadores1.png)
+
+Igualmente, se desarrollo una opción para comparar dos jugadores y sus trayectorias en la liga. Para ambas tablas, se da un formato condicional para resaltar la mejor marca por estadística
+
+![Imagen dos de la página de jugadores](imagenes/jugadores2.png)
+![Imagen tres de la página de jugadores](imagenes/jugadores3.png)
+
+### Equipos
+
+En la página de equipos, se puede extraer por temporada y equipo el desempeño de los jugadores asociados a éste, mostrando:
+
+* Puntos (PTS)
+* Rebotes (REB)
+* Asistencias (AST)
+* Robos (STL)
+* Bloqueos (BLK)
+* Temporada
+
+![Imagen de la página de equipos](imagenes/equipos.png)
