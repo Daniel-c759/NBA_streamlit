@@ -18,7 +18,7 @@ o si bien se tienen configuradas llaves SSH se puede usar:
 
 ### Configurar
 
-Dentro de la carpeta NBA_streamlit, es necesario crear una carpeta **.streamlit/**. Dentro de esta carpeta es necesario crear un archivo **secrets.toml** con la siguiente configuración:
+Dentro de la carpeta NBA_streamlit que genera al clonar el repositorio, entramos a la carpeta app/ en la cual debemos crear una carpeta **.streamlit/**. Dentro de esta última carpeta, es necesario crear un archivo **secrets.toml** con la siguiente configuración:
 
 ```
 # .streamlit/secrets.toml
